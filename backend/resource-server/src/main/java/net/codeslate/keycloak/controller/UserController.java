@@ -19,7 +19,7 @@ public class UserController {
     @PreAuthorize("isAuthenticated")
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public User getEmployee(@AuthenticationPrincipal Jwt principal) {
-        System.out.println("Welcome, authenticated user, " + principal.toString() + "!");
+        System.out.println("Welcome, authenticated user, " + principal.getClaimAsString("name") + "!");
         return new User(principal.getClaimAsString("sub"), principal.getClaimAsString("name"));
     }
 }
