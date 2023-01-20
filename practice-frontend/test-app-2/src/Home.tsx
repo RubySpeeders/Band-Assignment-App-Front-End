@@ -28,13 +28,9 @@ const Home = () => {
     const headers = {
        authHeader
   };
+  console.log(authHeader)
   axios.get('http://localhost:8081/user', { headers })
       .then(response => console.log(response.data));
-    // var headers = AxiosHeaders(authHeader)
-    // axios.get(`https://localhost:8081/user`, {  })
-    //   .then(res => {
-    //     console.log(res.data)
-    //   })
     return (
       <div>
         <strong>Logged in! 🎉</strong><br />
