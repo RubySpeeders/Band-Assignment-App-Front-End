@@ -11,24 +11,18 @@ import AxiosHeaders from 'axios'
 //   headers: { 'Authorization': 'Bearer ' }
 // });
 
-var jwt = ""
-
 // TODO: Double bind Auth Token at login to headers value!
 const Home = () => {
   const auth = useAuth();
   console.log(auth);
   if (auth && auth.userData) {
+    var token = auth.userData.access_token
     var authHeader = "'Authorization': 'Bearer " + auth.userData.access_token + "'"
-    // var axiosInstance = axios.create({
-    //   baseURL: 'http://localhost:8081/',
-    //   timeout: 2000,
-    //   headers: { authHeader }
-    // });
     console.log(authHeader)
     const headers = {
-       authHeader
+      'Authorization': 'Bearer ' + auth.userData.access_token
   };
-  console.log(authHeader)
+  console.log()
   axios.get('http://localhost:8081/user', { headers })
       .then(response => console.log(response.data));
     return (
