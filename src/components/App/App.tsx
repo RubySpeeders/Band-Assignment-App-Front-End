@@ -2,7 +2,7 @@ import { useState } from "react"
 import "./App.styles.css"
 // import { assign } from "../../utilities/assign"
 import { shuffle } from "lodash"
-import { Card, CardContent, Typography } from "@material-ui/core"
+import { Box, Card, CardContent, Typography } from "@material-ui/core"
 
 export interface Name {
   name: string
@@ -77,86 +77,107 @@ export function App() {
         <h1>Band Assignment</h1>
       </header>
       {!selectedEqual && <p>{errorMessage}</p>}
-      <h2>Names</h2>
-      {names
-        .filter((name) => !name.selected)
-        .map((name) => (
-          <Card
-            style={{ border: "solid blue", margin: ".25em", width: "50em" }}
-            key={name.name}
-            onClick={() => handleClickName(name)}
-          >
-            <CardContent>
-              <Typography>{name.name}</Typography>
-            </CardContent>
-          </Card>
-        ))}
-      <div>
-        <Typography>Selected Names</Typography>
-        {names
-          .filter((name) => name.selected)
-          .map((name) => (
-            <Card
-              style={{ border: "solid blue", margin: ".25em", width: "50em" }}
-              key={name.name}
-              onClick={() => handleClickName(name)}
-            >
-              <CardContent>
-                <Typography>{name.name}</Typography>
-              </CardContent>
-            </Card>
-          ))}
-      </div>
-      <div></div>
-      <div>
-        <h2>Instruments</h2>
-        {instruments
-          .filter((instrument) => !instrument.selected)
-          .map((instrument) => (
-            <Card
-              style={{ border: "solid red", margin: ".25em", width: "50em" }}
-              key={instrument.instrument}
-              onClick={() => handleClickInstrument(instrument)}
-            >
-              <CardContent>
-                <Typography>{instrument.instrument}</Typography>
-              </CardContent>
-            </Card>
-          ))}
-      </div>
-      <Typography>Selected Instruments</Typography>
-      {instruments
-        .filter((instrument) => instrument.selected)
-        .map((instrument) => (
-          <Card
-            style={{ border: "solid red", margin: ".25em", width: "50em" }}
-            key={instrument.instrument}
-            onClick={() => handleClickInstrument(instrument)}
-          >
-            <CardContent>
-              <Typography>{instrument.instrument}</Typography>
-            </CardContent>
-          </Card>
-        ))}
       <button
         onClick={() => assign(names, instruments)}
         disabled={!selectedEqual}
       >
         Give me assignments!
       </button>
-      {assignments.map((assignment) => {
-        return (
-          <Card
-            style={{ border: "solid pink", margin: ".25em", width: "50em" }}
-            key={assignment.name}
-          >
-            <CardContent>
-              <Typography>Name: {assignment.name}</Typography>
-              <Typography>Instrument: {assignment.instrument}</Typography>
-            </CardContent>
-          </Card>
-        )
-      })}
+      <div className="App-container">
+        <Box style={{ width: "50vw" }}>
+          <h2>Names</h2>
+          {names
+            .filter((name) => !name.selected)
+            .map((name) => (
+              <Card
+                style={{ border: "solid blue", margin: ".25em", width: "20em" }}
+                key={name.name}
+                onClick={() => handleClickName(name)}
+              >
+                <CardContent>
+                  <Typography>{name.name}</Typography>
+                </CardContent>
+              </Card>
+            ))}
+          <div>
+            <Typography>Selected Names</Typography>
+            {names
+              .filter((name) => name.selected)
+              .map((name) => (
+                <Card
+                  style={{
+                    border: "solid blue",
+                    margin: ".25em",
+                    width: "20em",
+                  }}
+                  key={name.name}
+                  onClick={() => handleClickName(name)}
+                >
+                  <CardContent>
+                    <Typography>{name.name}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+          <div></div>
+          <div>
+            <h2>Instruments</h2>
+            {instruments
+              .filter((instrument) => !instrument.selected)
+              .map((instrument) => (
+                <Card
+                  style={{
+                    border: "solid red",
+                    margin: ".25em",
+                    width: "20em",
+                  }}
+                  key={instrument.instrument}
+                  onClick={() => handleClickInstrument(instrument)}
+                >
+                  <CardContent>
+                    <Typography>{instrument.instrument}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+          <Typography>Selected Instruments</Typography>
+          {instruments
+            .filter((instrument) => instrument.selected)
+            .map((instrument) => (
+              <Card
+                style={{ border: "solid red", margin: ".25em", width: "20em" }}
+                key={instrument.instrument}
+                onClick={() => handleClickInstrument(instrument)}
+              >
+                <CardContent>
+                  <Typography>{instrument.instrument}</Typography>
+                </CardContent>
+              </Card>
+            ))}
+        </Box>
+        <Box style={{ width: "50vw" }}>
+          <h2>Assignments</h2>
+          <div>
+            {assignments.map((assignment) => {
+              return (
+                <Card
+                  style={{
+                    border: "solid pink",
+                    margin: ".25em",
+                    width: "20em",
+                  }}
+                  key={assignment.name}
+                >
+                  <CardContent>
+                    <Typography>Name: {assignment.name}</Typography>
+                    <Typography>Instrument: {assignment.instrument}</Typography>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </Box>
+      </div>
     </div>
   )
 }
