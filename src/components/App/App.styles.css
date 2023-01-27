@@ -20,6 +20,11 @@
   color: #464855;
 }
 
+.dropzone {
+  min-height: 10vh;
+  border: solid 1px black
+}
+
 .App-link {
   color: #ff4858;
 }
